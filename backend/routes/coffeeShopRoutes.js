@@ -1,20 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const { getCoffeeShops, getCoffeeShop, createCoffeeShop, updateCoffeeShop, deleteCoffeeShop } = require('../controllers/coffeeShopController');
 
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Coffee Shops' });
-});
+// Can you use this instead of the below?
+router.route('/').get(getCoffeeShops).post(createCoffeeShop);
+router.route('/:id').get(getCoffeeShop).put(updateCoffeeShop).delete(deleteCoffeeShop);
 
-router.post('/', (req, res) => {
-  res.status(200).json({ message: 'Create Coffee Shop' });
-});
+// router.get('/', getCoffeeShops);
 
-router.put('/:id', (req, res) => {
-  res.status(200).json({ message: `Update Coffee Shop - ${req.params.id}` });
-});
+// router.get('/:id', getCoffeeShop);
 
-router.delete('/:id', (req, res) => {
-  res.status(200).json({ message: `Delete Coffee Shop - ${req.params.id}` });
-});
+// router.post('/', createCoffeeShop);
+
+// router.put('/:id', updateCoffeeShop);
+
+// router.delete('/:id', deleteCoffeeShop);
 
 module.exports = router;
