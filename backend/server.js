@@ -14,7 +14,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use('/api/coffeeshops', require('./routes/coffeeShopRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 // override the default Express error handler
 app.use(errorHandler);

@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
 const { getCoffeeShops, getCoffeeShop, createCoffeeShop, updateCoffeeShop, deleteCoffeeShop } = require('../controllers/coffeeShopController');
 
+const { protect } = require('../middleware/authMiddleware');
+
 // Can you use this instead of the below?
-router.route('/').get(getCoffeeShops).post(createCoffeeShop);
-router.route('/:id').get(getCoffeeShop).put(updateCoffeeShop).delete(deleteCoffeeShop);
+router.route('/').get(protect, getCoffeeShops).post(protect, createCoffeeShop);
+router.route('/:id').get(protect, getCoffeeShop).put(protect, updateCoffeeShop).delete(protect, deleteCoffeeShop);
 
 // router.get('/', getCoffeeShops);
 
