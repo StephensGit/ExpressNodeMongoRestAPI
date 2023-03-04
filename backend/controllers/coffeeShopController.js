@@ -44,16 +44,15 @@ const updateCoffeeShop = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Coffee Shop not found');
   }
-  // logged in user
-  const user = await User.findById(req.user._id);
 
-  if (!user) {
+  if (!req.user) {
     res.status(404);
     throw new Error('User not found');
   }
-
+  console.log(coffeeShop.user.toString(), 'coffeeShop.user.toString()');
+  console.log(req.user._id, 'req.user._id');
   // check if user logged in is the coffee shop owner
-  if (coffeeShop.user.toString() !== user._id.toString()) {
+  if (coffeeShop.user.toString() !== req.user._id.toString()) {
     res.status(401);
     throw new Error('You are not authorized to update this coffee shop');
   }
