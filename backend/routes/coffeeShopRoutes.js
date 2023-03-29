@@ -6,8 +6,8 @@ const { getCoffeeShops, getCoffeeShop, createCoffeeShop, updateCoffeeShop, delet
 const { protect } = require('../middleware/authMiddleware');
 
 // Can you use this instead of the below?
-router.route('/').get(protect, getCoffeeShops).post(protect, createCoffeeShop);
-router.route('/:id').get(protect, getCoffeeShop).put(protect, updateCoffeeShop).delete(protect, deleteCoffeeShop);
+router.route('/').get(getCoffeeShops).post(protect, createCoffeeShop);
+router.route('/:id').get(getCoffeeShop).put(protect, updateCoffeeShop).delete(protect, deleteCoffeeShop);
 
 // router.get('/', getCoffeeShops);
 

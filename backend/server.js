@@ -1,16 +1,18 @@
 const express = require('express');
-
+const cors = require('cors');
 // allows a dot env file with environment variables to be used
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const port = process.env.PORT || 4000;
 const colors = require('colors');
+
 const connectDB = require('./config/db');
 
 // connect to database
 connectDB();
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

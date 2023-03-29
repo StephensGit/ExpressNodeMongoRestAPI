@@ -8,7 +8,8 @@ const User = require('../models/userModel');
 // @route   GET /api/coffeeshops/
 // @access  PRIVATE
 const getCoffeeShops = asyncHandler(async (req, res) => {
-  const coffeeShops = await CoffeeShop.find({ user: req.user._id });
+  const coffeeShops = await CoffeeShop.find();
+  // const coffeeShops = await CoffeeShop.find({ user: req.user._id });
   res.status(200).json(coffeeShops);
 });
 
@@ -16,7 +17,8 @@ const getCoffeeShops = asyncHandler(async (req, res) => {
 // @route   GET /api/coffeeshops/:id
 // @access  PRIVATE
 const getCoffeeShop = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Get Coffee Shop - ${req.params.id} ` });
+  const coffeeShop = await CoffeeShop.findById(req.params.id);
+  res.status(200).json(coffeeShop);
 });
 
 // @desc:   Create a coffee shop
